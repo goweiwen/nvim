@@ -7,6 +7,16 @@ local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
 
+local mode = {
+  "mode",
+  fmt = function(s) return s:sub(1,1) end
+}
+
+local path = {
+  "filename",
+  path = 1
+}
+
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
@@ -48,9 +58,10 @@ lualine.setup {
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { "mode" },
+    lualine_a = { mode },
     lualine_b = {"branch"},
-    lualine_c = { diagnostics },
+    lualine_c = { path },
+    lualine_d = { diagnostics },
     lualine_x = { diff, spaces, "encoding", filetype },
     lualine_y = { location },
     lualine_z = { "progress" },
