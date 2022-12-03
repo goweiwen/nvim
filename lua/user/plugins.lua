@@ -85,7 +85,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" }
 
   -- Treesitter
   use {
@@ -102,7 +102,18 @@ return packer.startup(function(use)
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
   -- Rust Tools
-  use 'simrat39/rust-tools.nvim'
+  use "simrat39/rust-tools.nvim"
+
+  use {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      }
+    end
+  }
+  use "tpope/vim-surround"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

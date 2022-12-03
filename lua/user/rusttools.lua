@@ -11,7 +11,14 @@ local opts = {
 		-- standalone file support
 		-- setting it to false may improve startup time
 		standalone = true,
-		on_attach = require("user.lsp.handlers").on_attach,
+		on_attach = function(client, bufnr)
+      require("user.lsp.handlers").on_attach(client, bufnr)
+      
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+    end,
 		capabilities = require("user.lsp.handlers").capabilities,
 		settings = {
 			-- to enable rust-analyzer settings visit:
