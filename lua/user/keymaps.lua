@@ -65,6 +65,8 @@ keymap("n", "<leader>fe", ":Telescope diagnostics<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gb", "<cmd>lua require('gitsigns').blame_line{full=true}<CR>", opts)
+keymap("n", "<leader>gd", "<cmd>Gitsigns toggle_deleted<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
